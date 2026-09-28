@@ -7,29 +7,87 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --bg-sand: #f4efe9; --primary-brown: #b08d72; --dark-brown: #8a6a52; --charcoal: #1c1c1c; --soft-white: #ffffff; --card-bg: #faf7f4; --border-color: #e5dcd3; --font-serif: 'Cormorant Garamond', serif; --font-sans: 'Plus Jakarta Sans', sans-serif; }
+        :root { 
+            --bg-sand: #f4efe9; 
+            --primary-brown: #b08d72; 
+            --dark-brown: #8a6a52; 
+            --charcoal: #1c1c1c; 
+            --soft-white: #ffffff; 
+            --card-bg: #faf7f4; 
+            --border-color: #e5dcd3; 
+            --font-serif: 'Cormorant Garamond', serif; 
+            --font-sans: 'Plus Jakarta Sans', sans-serif; 
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg-sand); color: var(--charcoal); font-family: var(--font-sans); line-height: 1.6; }
+        body { background-color: var(--bg-sand); color: var(--charcoal); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; }
+
         header { position: sticky; top: 0; z-index: 1000; background: var(--soft-white); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 80px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
         .logo-container { background: var(--primary-brown); color: #fff; padding: 0.8rem 1.8rem; border-bottom-right-radius: 40px; display: flex; align-items: center; gap: 12px; text-decoration: none; margin-left: -2rem; }
         .logo-text h1 { font-family: var(--font-serif); font-size: 1.4rem; letter-spacing: 1px; line-height: 1; }
         .logo-text span { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.9; }
+
         .nav-links { display: flex; list-style: none; gap: 2rem; }
         .nav-item { position: relative; }
         .nav-link { text-decoration: none; color: var(--charcoal); font-weight: 500; font-size: 0.95rem; padding: 1.5rem 0; display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
         .nav-link:hover, .nav-link.active { color: var(--primary-brown); }
-        .btn-reserve { background: var(--primary-brown); color: #fff; padding: 0.8rem 1.6rem; border-radius: 4px; font-weight: 600; text-decoration: none; transition: background 0.3s; }
+
+        .btn-reserve { background: var(--primary-brown); color: #fff; padding: 0.8rem 1.6rem; border-radius: 4px; font-weight: 600; text-decoration: none; transition: background 0.3s; display: inline-block; }
         .btn-reserve:hover { background: var(--dark-brown); }
-        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; display: flex; align-items: center; padding: 0 5%; color: #fff; }
+
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--charcoal); background: none; border: none; }
+
+        .hero { height: 80vh; min-height: 500px; background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; display: flex; align-items: center; padding: 0 5%; color: #fff; }
         .hero-content { max-width: 650px; }
         .hero-title { font-family: var(--font-serif); font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.2rem; }
+
         .booking-widget-container { max-width: 1100px; margin: -50px auto 4rem auto; position: relative; z-index: 100; padding: 0 1rem; }
         .booking-widget { background: #fff; border-radius: 8px; padding: 1.5rem 2rem; box-shadow: 0 15px 35px rgba(0,0,0,0.08); display: grid; grid-template-columns: repeat(4, 1fr) auto; gap: 1.2rem; align-items: center; }
         .booking-field { display: flex; flex-direction: column; gap: 6px; }
         .booking-field label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #777; font-weight: 600; }
-        .booking-field select, .booking-field input { border: 1px solid var(--border-color); padding: 0.75rem; border-radius: 4px; outline: none; background: var(--card-bg); }
-        .btn-search { background: var(--primary-brown); color: #fff; border: none; height: 45px; padding: 0 2rem; border-radius: 4px; font-weight: 600; cursor: pointer; margin-top: 1.2rem; }
+        .booking-field select, .booking-field input { border: 1px solid var(--border-color); padding: 0.75rem; border-radius: 4px; outline: none; background: var(--card-bg); font-family: var(--font-sans); }
+        .btn-search { background: var(--primary-brown); color: #fff; border: none; height: 45px; padding: 0 2rem; border-radius: 4px; font-weight: 600; cursor: pointer; margin-top: 1.2rem; transition: background 0.3s; }
+        .btn-search:hover { background: var(--dark-brown); }
+
         footer { background: var(--charcoal); color: #fff; text-align: center; padding: 2rem; font-size: 0.9rem; }
+
+        @media (max-width: 992px) {
+            header { padding: 0 1.5rem; }
+            .hamburger { display: block; }
+            .nav-actions { display: none; }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 80px);
+                background: var(--soft-white);
+                flex-direction: column;
+                gap: 0;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.08);
+                transition: right 0.3s ease-in-out;
+                overflow-y: auto;
+                padding: 1rem 0;
+            }
+
+            .nav-links.active { right: 0; }
+            .nav-item { width: 100%; }
+            .nav-link { padding: 1rem 2rem; border-bottom: 1px solid var(--border-color); width: 100%; }
+
+            .hero { height: auto; padding: 5rem 1.5rem; }
+            .hero-title { font-size: 2.5rem; }
+
+            .booking-widget-container { margin: -30px auto 3rem auto; }
+            .booking-widget { grid-template-columns: 1fr; gap: 1rem; padding: 1.2rem; }
+            .btn-search { margin-top: 0.5rem; width: 100%; }
+        }
+
+        @media (max-width: 576px) {
+            .logo-container { margin-left: -1.5rem; padding: 0.6rem 1.2rem; }
+            .logo-text h1 { font-size: 1.1rem; }
+            .hero-title { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -39,14 +97,19 @@
             <i class="fa-solid fa-compass"></i>
             <div class="logo-text"><h1>SAVANLUX</h1><span>Safari & Lodges</span></div>
         </a>
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
             <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
             <li class="nav-item"><a href="destinations.html" class="nav-link">Destinations</a></li>
             <li class="nav-item"><a href="accommodations.html" class="nav-link">Accommodations</a></li>
             <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
             <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
-        <a href="accommodations.html" class="btn-reserve">Booking Online</a>
+        <div class="nav-actions">
+            <a href="accommodations.html" class="btn-reserve">Booking Online</a>
+        </div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </header>
 
     <section class="hero">
@@ -72,5 +135,21 @@
         <p>&copy; 2026 SavanLux Lodges & Safaris. All rights reserved.</p>
     </footer>
 
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburgerBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = hamburgerBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
 </body>
 </html>

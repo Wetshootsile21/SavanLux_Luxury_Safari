@@ -7,25 +7,83 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --bg-sand: #f4efe9; --primary-brown: #b08d72; --dark-brown: #8a6a52; --charcoal: #1c1c1c; --soft-white: #ffffff; --font-serif: 'Cormorant Garamond', serif; --font-sans: 'Plus Jakarta Sans', sans-serif; }
+        :root { 
+            --bg-sand: #f4efe9; 
+            --primary-brown: #b08d72; 
+            --dark-brown: #8a6a52; 
+            --charcoal: #1c1c1c; 
+            --soft-white: #ffffff; 
+            --border-color: #e5dcd3;
+            --font-serif: 'Cormorant Garamond', serif; 
+            --font-sans: 'Plus Jakarta Sans', sans-serif; 
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg-sand); color: var(--charcoal); font-family: var(--font-sans); }
+        body { background-color: var(--bg-sand); color: var(--charcoal); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; }
+
         header { position: sticky; top: 0; z-index: 1000; background: var(--soft-white); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 80px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
         .logo-container { background: var(--primary-brown); color: #fff; padding: 0.8rem 1.8rem; border-bottom-right-radius: 40px; display: flex; align-items: center; gap: 12px; text-decoration: none; margin-left: -2rem; }
-        .logo-text h1 { font-family: var(--font-serif); font-size: 1.4rem; line-height: 1; }
+        .logo-text h1 { font-family: var(--font-serif); font-size: 1.4rem; letter-spacing: 1px; line-height: 1; }
+        .logo-text span { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.9; }
+
         .nav-links { display: flex; list-style: none; gap: 2rem; }
-        .nav-link { text-decoration: none; color: var(--charcoal); font-weight: 500; padding: 1.5rem 0; }
+        .nav-item { position: relative; }
+        .nav-link { text-decoration: none; color: var(--charcoal); font-weight: 500; font-size: 0.95rem; padding: 1.5rem 0; display: flex; align-items: center; gap: 6px; transition: color 0.3s; }
         .nav-link:hover, .nav-link.active { color: var(--primary-brown); }
-        .page-header { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') center/cover; padding: 4rem 2rem; text-align: center; color: #fff; }
+
+        .btn-reserve { background: var(--primary-brown); color: #fff; padding: 0.8rem 1.6rem; border-radius: 4px; font-weight: 600; text-decoration: none; transition: background 0.3s; display: inline-block; }
+        .btn-reserve:hover { background: var(--dark-brown); }
+
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--charcoal); background: none; border: none; }
+
+        .page-header { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') center/cover; padding: 5rem 1.5rem; text-align: center; color: #fff; }
         .page-header h1 { font-family: var(--font-serif); font-size: 3rem; }
+
         .grid-container { max-width: 1200px; margin: 3rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-        .room-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.04); }
+        .room-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.04); transition: transform 0.3s; }
+        .room-card:hover { transform: translateY(-5px); }
         .room-card img { width: 100%; height: 220px; object-fit: cover; }
         .room-body { padding: 1.5rem; }
         .room-body h3 { font-family: var(--font-serif); font-size: 1.5rem; }
         .price { color: var(--primary-brown); font-weight: 700; margin: 0.5rem 0; }
-        .btn-book { background: var(--primary-brown); color: #fff; border: none; padding: 0.7rem 1.2rem; border-radius: 4px; cursor: pointer; width: 100%; font-weight: 600; margin-top: 1rem; }
-        footer { background: var(--charcoal); color: #fff; text-align: center; padding: 2rem; margin-top: 4rem; }
+        .btn-book { background: var(--primary-brown); color: #fff; border: none; padding: 0.7rem 1.2rem; border-radius: 4px; cursor: pointer; width: 100%; font-weight: 600; margin-top: 1rem; transition: background 0.3s; }
+        .btn-book:hover { background: var(--dark-brown); }
+
+        footer { background: var(--charcoal); color: #fff; text-align: center; padding: 2rem; font-size: 0.9rem; margin-top: 4rem; }
+
+        @media (max-width: 992px) {
+            header { padding: 0 1.5rem; }
+            .hamburger { display: block; }
+            .nav-actions { display: none; }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 280px;
+                height: calc(100vh - 80px);
+                background: var(--soft-white);
+                flex-direction: column;
+                gap: 0;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.08);
+                transition: right 0.3s ease-in-out;
+                overflow-y: auto;
+                padding: 1rem 0;
+            }
+
+            .nav-links.active { right: 0; }
+            .nav-item { width: 100%; }
+            .nav-link { padding: 1rem 2rem; border-bottom: 1px solid var(--border-color); width: 100%; }
+
+            .page-header { padding: 3.5rem 1rem; }
+            .page-header h1 { font-size: 2.2rem; }
+        }
+
+        @media (max-width: 576px) {
+            .logo-container { margin-left: -1.5rem; padding: 0.6rem 1.2rem; }
+            .logo-text h1 { font-size: 1.1rem; }
+            .grid-container { grid-template-columns: 1fr; padding: 0 1rem; }
+        }
     </style>
 </head>
 <body>
@@ -35,13 +93,19 @@
             <i class="fa-solid fa-compass"></i>
             <div class="logo-text"><h1>SAVANLUX</h1><span>Safari & Lodges</span></div>
         </a>
-        <ul class="nav-links">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="destinations.html" class="nav-link">Destinations</a></li>
-            <li><a href="accommodations.html" class="nav-link active">Accommodations</a></li>
-            <li><a href="services.html" class="nav-link">Services</a></li>
-            <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <ul class="nav-links" id="navLinks">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="destinations.html" class="nav-link">Destinations</a></li>
+            <li class="nav-item"><a href="accommodations.html" class="nav-link active">Accommodations</a></li>
+            <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
         </ul>
+        <div class="nav-actions">
+            <a href="accommodations.html" class="btn-reserve">Booking Online</a>
+        </div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </header>
 
     <div class="page-header">
@@ -51,7 +115,7 @@
 
     <div class="grid-container">
         <div class="room-card">
-            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Suite">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Savannah King Suite">
             <div class="room-body">
                 <h3>Savannah King Suite</h3>
                 <p class="price">$450 / Night</p>
@@ -60,7 +124,7 @@
             </div>
         </div>
         <div class="room-card">
-            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" alt="Villa">
+            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" alt="Riverfront Villa">
             <div class="room-body">
                 <h3>Riverfront Villa</h3>
                 <p class="price">$620 / Night</p>
@@ -68,8 +132,36 @@
                 <button class="btn-book" onclick="alert('Proceeding to reserve Riverfront Villa...')">Reserve Villa</button>
             </div>
         </div>
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Classic Tented Camp">
+            <div class="room-body">
+                <h3>Classic Tented Camp</h3>
+                <p class="price">$380 / Night</p>
+                <p>Authentic canvas lodge featuring king beds and en-suite bush showers.</p>
+                <button class="btn-book" onclick="alert('Proceeding to reserve Classic Tented Camp...')">Reserve Tent</button>
+            </div>
+        </div>
     </div>
 
-    <footer><p>&copy; 2026 SavanLux Lodges & Safaris. All rights reserved.</p></footer>
+    <footer>
+        <p>&copy; 2026 SavanLux Lodges & Safaris. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburgerBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = hamburgerBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
 </body>
 </html>
