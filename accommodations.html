@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodations | SavanLux Lodges</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg-sand: #f4efe9; --primary-brown: #b08d72; --dark-brown: #8a6a52; --charcoal: #1c1c1c; --soft-white: #ffffff; --font-serif: 'Cormorant Garamond', serif; --font-sans: 'Plus Jakarta Sans', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-sand); color: var(--charcoal); font-family: var(--font-sans); }
+        header { position: sticky; top: 0; z-index: 1000; background: var(--soft-white); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 80px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .logo-container { background: var(--primary-brown); color: #fff; padding: 0.8rem 1.8rem; border-bottom-right-radius: 40px; display: flex; align-items: center; gap: 12px; text-decoration: none; margin-left: -2rem; }
+        .logo-text h1 { font-family: var(--font-serif); font-size: 1.4rem; line-height: 1; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-link { text-decoration: none; color: var(--charcoal); font-weight: 500; padding: 1.5rem 0; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-brown); }
+        .page-header { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1920&q=80') center/cover; padding: 4rem 2rem; text-align: center; color: #fff; }
+        .page-header h1 { font-family: var(--font-serif); font-size: 3rem; }
+        .grid-container { max-width: 1200px; margin: 3rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .room-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.04); }
+        .room-card img { width: 100%; height: 220px; object-fit: cover; }
+        .room-body { padding: 1.5rem; }
+        .room-body h3 { font-family: var(--font-serif); font-size: 1.5rem; }
+        .price { color: var(--primary-brown); font-weight: 700; margin: 0.5rem 0; }
+        .btn-book { background: var(--primary-brown); color: #fff; border: none; padding: 0.7rem 1.2rem; border-radius: 4px; cursor: pointer; width: 100%; font-weight: 600; margin-top: 1rem; }
+        footer { background: var(--charcoal); color: #fff; text-align: center; padding: 2rem; margin-top: 4rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <i class="fa-solid fa-compass"></i>
+            <div class="logo-text"><h1>SAVANLUX</h1><span>Safari & Lodges</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+            <li><a href="accommodations.html" class="nav-link active">Accommodations</a></li>
+            <li><a href="services.html" class="nav-link">Services</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+    </header>
+
+    <div class="page-header">
+        <h1>Luxury Suites & Tents</h1>
+        <p>Tailored luxury accommodations immersed in nature</p>
+    </div>
+
+    <div class="grid-container">
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Suite">
+            <div class="room-body">
+                <h3>Savannah King Suite</h3>
+                <p class="price">$450 / Night</p>
+                <p>Private deck overlooking the watering hole with outdoor plunge pool.</p>
+                <button class="btn-book" onclick="alert('Proceeding to reserve Savannah King Suite...')">Reserve Suite</button>
+            </div>
+        </div>
+        <div class="room-card">
+            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" alt="Villa">
+            <div class="room-body">
+                <h3>Riverfront Villa</h3>
+                <p class="price">$620 / Night</p>
+                <p>Spacious multi-room luxury villa designed for families and groups.</p>
+                <button class="btn-book" onclick="alert('Proceeding to reserve Riverfront Villa...')">Reserve Villa</button>
+            </div>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 SavanLux Lodges & Safaris. All rights reserved.</p></footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | SavanLux Lodges</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg-sand: #f4efe9; --primary-brown: #b08d72; --dark-brown: #8a6a52; --charcoal: #1c1c1c; --soft-white: #ffffff; --font-serif: 'Cormorant Garamond', serif; --font-sans: 'Plus Jakarta Sans', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-sand); color: var(--charcoal); font-family: var(--font-sans); }
+        header { position: sticky; top: 0; z-index: 1000; background: var(--soft-white); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 80px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .logo-container { background: var(--primary-brown); color: #fff; padding: 0.8rem 1.8rem; border-bottom-right-radius: 40px; display: flex; align-items: center; gap: 12px; text-decoration: none; margin-left: -2rem; }
+        .logo-text h1 { font-family: var(--font-serif); font-size: 1.4rem; line-height: 1; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-link { text-decoration: none; color: var(--charcoal); font-weight: 500; padding: 1.5rem 0; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-brown); }
+        .page-header { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1920&q=80') center/cover; padding: 4rem 2rem; text-align: center; color: #fff; }
+        .page-header h1 { font-family: var(--font-serif); font-size: 3rem; }
+        .services-list { max-width: 1000px; margin: 3rem auto; padding: 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+        .service-box { background: #fff; padding: 2rem; border-radius: 8px; text-align: center; box-shadow: 0 6px 15px rgba(0,0,0,0.04); }
+        .service-box i { font-size: 2.5rem; color: var(--primary-brown); margin-bottom: 1rem; }
+        .service-box h3 { font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 0.5rem; }
+        footer { background: var(--charcoal); color: #fff; text-align: center; padding: 2rem; margin-top: 4rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-container">
+            <i class="fa-solid fa-compass"></i>
+            <div class="logo-text"><h1>SAVANLUX</h1><span>Safari & Lodges</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+            <li><a href="accommodations.html" class="nav-link">Accommodations</a></li>
+            <li><a href="services.html" class="nav-link active">Services</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+    </header>
+
+    <div class="page-header">
+        <h1>Lodge Amenities & Experiences</h1>
+        <p>Bespoke services tailored to your luxury stay</p>
+    </div>
+
+    <div class="services-list">
+        <div class="service-box">
+            <i class="fa-solid fa-car"></i>
+            <h3>Guided Game Drives</h3>
+            <p>Expert-led morning and night safari drives.</p>
+        </div>
+        <div class="service-box">
+            <i class="fa-solid fa-plane"></i>
+            <h3>Airstrip Transfers</h3>
+            <p>Direct private bush airstrip pickup & fly-in service.</p>
+        </div>
+        <div class="service-box">
+            <i class="fa-solid fa-utensils"></i>
+            <h3>Bush Dining</h3>
+            <p>Gourmet meals served under African open skies.</p>
+        </div>
+        <div class="service-box">
+            <i class="fa-solid fa-spa"></i>
+            <h3>Wellness Spa</h3>
+            <p>Full-service holistic treatments inspired by nature.</p>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 SavanLux Lodges & Safaris. All rights reserved.</p></footer>
+</body>
+</html>
