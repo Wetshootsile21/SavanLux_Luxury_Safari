@@ -22,6 +22,72 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: var(--bg-sand); color: var(--charcoal); font-family: var(--font-sans); line-height: 1.6; overflow-x: hidden; }
 
+        /* PRELOADER STYLES */
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-sand);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        #loader-wrapper.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .loader-logo {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--charcoal);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .loader-logo i {
+            color: var(--primary-brown);
+        }
+
+        .loader-spinner {
+            width: 48px;
+            height: 48px;
+            border: 3px solid rgba(176, 141, 114, 0.2);
+            border-top-color: var(--primary-brown);
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin-top: 8px;
+        }
+
+        .loader-sub {
+            color: var(--dark-brown);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         header { position: sticky; top: 0; z-index: 1000; background: var(--soft-white); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 80px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
         .logo-container { background: var(--primary-brown); color: #fff; padding: 0.8rem 1.8rem; border-bottom-right-radius: 40px; display: flex; align-items: center; gap: 12px; text-decoration: none; margin-left: -2rem; }
         .logo-text h1 { font-family: var(--font-serif); font-size: 1.4rem; letter-spacing: 1px; line-height: 1; }
@@ -92,6 +158,17 @@
 </head>
 <body>
 
+    <!-- PRELOADER -->
+    <div id="loader-wrapper">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <i class="fa-solid fa-compass"></i> SAVANLUX
+            </div>
+            <div class="loader-spinner"></div>
+            <p class="loader-sub">Preparing Your Luxury Safari Experience...</p>
+        </div>
+    </div>
+
     <header>
         <a href="index.html" class="logo-container">
             <i class="fa-solid fa-compass"></i>
@@ -136,6 +213,15 @@
     </footer>
 
     <script>
+        // PRELOADER FADE OUT
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader-wrapper');
+            setTimeout(() => {
+                loader.classList.add('fade-out');
+            }, 800);
+        });
+
+        // HAMBURGER MENU TOGGLE
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const navLinks = document.getElementById('navLinks');
 
